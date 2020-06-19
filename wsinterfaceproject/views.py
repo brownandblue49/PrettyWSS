@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse  
+from django.http import HttpResponse
+from django.contrib import messages  
 import requests
 from subprocess import run,PIPE
 import os
@@ -140,7 +141,15 @@ def upload_file(request):
         #profile = ProfileForm(request.POST, request.FILES)  
         #if profile.is_valid():  
         #    handle_uploaded_file(request.FILES['fileupload'])  
-    #return HttpResponse("File uploaded successfuly")  
+    #return HttpResponse("File uploaded successfuly") 
+        media_path = './media/'
+        frame_generated_path = './FramesGenerated/'
+        list_of_files = glob.glob('./media/*.mp4') # * means all if need specific format then *.csv
+        print(list_of_files)
+        latest_file = max(list_of_files, key=os.path.getctime)
+        print(latest_file)
+        extractFrames(frame_generated_path , latest_file )
+        messages.info(request, 'File has been uploaded and is being analyzed.')
         return render(request,'EPMFileUpload.html')
         #return HttpResponse("File uploaded successfuly")
 

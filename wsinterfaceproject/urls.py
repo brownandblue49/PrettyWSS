@@ -29,6 +29,8 @@ urlpatterns = [
     url(r'^external', views.external , name="script" ),
     
     path('EPM/', views.EPMFileUpload, name="EPMFileUpload"),
+    path('IncidentReport/', views.IncidentReport, name="IncidentReport"),
+    path('SupervisorReport/', views.SupervisorReport, name="SupervisorReport"),
     url(r'^upload_file', views.upload_file, name="script"),
     #path('EPM/', views.upload_file),
        

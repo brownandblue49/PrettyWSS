@@ -59,7 +59,7 @@ def extractFrames(pathOut,filepath):
             #Calculate size = Height/2 * Width/2
             size = (round(pilImage.size[0]/2), round(pilImage.size[1]/2))
             #Resize using CV2
-            #pilImage = pilImage.resize(size, Image.ANTIALIAS)
+            pilImage = pilImage.resize(size, Image.ANTIALIAS)
             imgByteArr = BytesIO()
             pilImage.save(imgByteArr, format='jpeg')
             #print(type(pilImage))          
@@ -94,7 +94,13 @@ def home(request):
     return render(request , 'home.html')
 
 def EPMFileUpload(request):
-   return render(request, "EPMFileUpload.html")
+    return render(request, "EPMFileUpload.html")
+   
+def IncidentReport(request):
+    return render(request,'IncidentManagementReport.html')
+    
+def SupervisorReport(request):
+    return render(request,'SupervisorReport.HTML')
 
 def output(request):
     data = requests.get("https://reqres.in/api/users")    

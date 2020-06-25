@@ -51,13 +51,19 @@
 
 <nav class="navbar navbar-default" style = "border-top:5px solid #ce0000;">
 			<div class="container-fluid">
+			<table width="100%" height="100%">
 			<div class="navbar-header">
-			<img src="{% static '/Hitachi-Vantara-logo-300x300.png' %}" width ="100px" height="100px" style = 'padding-left:10px;'alt =""/>
+			<tr>
+			<td width="20%"><img src="{% static '/Hitachi-Vantara-logo-300x300.png' %}" width ="100px" height="100px" style = 'padding-left:10px;'alt =""/></td>
 			</div>
 			
-			<p  class="navbar-text"style="font-size:36px; margin-top:32px;text-align: center;display: inline-block;">Worker Safety Solution</p>
-						
-			<a href = "{% url 'home' %}" ><img src = "{% static '/home_icon.png' %}"  width ="55px" height="55px" style ="float:right;margin-right:10px; margin-top:15px;"/></a>
+			<td  class="text-center" style='text-align:center;vertical-align:middle;'>
+			<p  style="font-size:36px;">Worker Safety Solution</p>
+			</td>
+			<td width="20%" align="right">
+			<a href = "{% url 'home' %}" ><img src = "{% static '/home_icon.png' %}"  width ="55px" height="55px" /></a>
+			</td>
+			</table>
 			</nav>
  
         <div class="culmn">

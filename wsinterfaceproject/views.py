@@ -39,7 +39,7 @@ def extractFrames(pathOut,filepath):
     x=1
     frameRate = cap.get(5) #frame rate
     numberOfPicturesPerSecond= 0.2
-    blockBlobService = BlockBlobService(account_name='stworkersafety', account_key='7OyzTj7Y83+0/+DiuS9IVDoZcKrQ0pSjE4F4q8L/ltT+Dv4TbBXTSDrOu928L60SCzo7mq+P3fEv3B4aOL6Flw==')
+    blockBlobService = BlockBlobService(account_name='storageworkersafety', account_key='oLyRX3ZuRBztBddfYyJktlV3AM+InU2VcvuX9poY94dlbZFqBW5gdVDyrWQUorwXhyV2Bi3LbTSps4enm++4KA==')
     # start creating frames from video
 
     
@@ -77,7 +77,7 @@ def extractFrames(pathOut,filepath):
             x+=1
             
 def uploadtoblob(filepath):
-    block_blob_service = BlockBlobService(account_name='stworkersafety', account_key='7OyzTj7Y83+0/+DiuS9IVDoZcKrQ0pSjE4F4q8L/ltT+Dv4TbBXTSDrOu928L60SCzo7mq+P3fEv3B4aOL6Flw==')
+    block_blob_service = BlockBlobService(account_name='storageworkersafety', account_key='oLyRX3ZuRBztBddfYyJktlV3AM+InU2VcvuX9poY94dlbZFqBW5gdVDyrWQUorwXhyV2Bi3LbTSps4enm++4KA==')
     container_name ='videoblob\\epm_stage'
 
     #local_path = "D:\\Test\\test"

@@ -40,7 +40,7 @@ def extractFrames(pathOut,filepath):
     frameRate = cap.get(5) #frame rate
     numberOfPicturesPerSecond= 1 #0.2
     blockBlobService = BlockBlobService(account_name='storageworkersafety', account_key='oLyRX3ZuRBztBddfYyJktlV3AM+InU2VcvuX9poY94dlbZFqBW5gdVDyrWQUorwXhyV2Bi3LbTSps4enm++4KA==')
-    blockBlobService2 = BlockBlobService(account_name='wssafedistancing', account_key='6u5/oQH7+iLS6kRrFXJq/GsrIZCTwGTfPtoJ0pG/eSIpy44V4taUYH4N+si2WKtCXuPx73AT4GHEgZCGworreg==')
+    blockBlobService2 = BlockBlobService(account_name='wssafedistancing', account_key='JMM7MecLzmnnPF+nK/THdfaE69RpvcNGtmQ782vulU9c4945uBX2y5s8QyWptvNv7cjgDTKf61tfvohsHZ7wXA==')
 
     # start creating frames from video
 

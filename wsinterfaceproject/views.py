@@ -40,7 +40,7 @@ def extractFrames(pathOut,filepath):
     frameRate = cap.get(5) #frame rate
     numberOfPicturesPerSecond= 1 #0.2
     blockBlobService = BlockBlobService(account_name='storageworkersafety', account_key='oLyRX3ZuRBztBddfYyJktlV3AM+InU2VcvuX9poY94dlbZFqBW5gdVDyrWQUorwXhyV2Bi3LbTSps4enm++4KA==')
-    blockBlobService2 = BlockBlobService(account_name='wssafedistancing', account_key='JMM7MecLzmnnPF+nK/THdfaE69RpvcNGtmQ782vulU9c4945uBX2y5s8QyWptvNv7cjgDTKf61tfvohsHZ7wXA==')
+    #blockBlobService2 = BlockBlobService(account_name='wssafedistancing', account_key='JMM7MecLzmnnPF+nK/THdfaE69RpvcNGtmQ782vulU9c4945uBX2y5s8QyWptvNv7cjgDTKf61tfvohsHZ7wXA==')
 
     # start creating frames from video
 
@@ -69,10 +69,10 @@ def extractFrames(pathOut,filepath):
             
             # write image to blob for logging
             now = datetime.strftime(datetime.now(), "%Y%m%dT%H%M%S%Z")
-            imageFileName= 'epm_stage/image' +  str(int(x)) + "_img_" + now + ".jpg"
+            imageFileName= 'image' +  str(int(x)) + "_img_" + now + ".jpg"
             #imageFileName= 'folder' + "/log/image" +  str(int(x)) + "_img.png"
-            blockBlobService.create_blob_from_bytes('videoblob', imageFileName, imgByteArr)
-            blockBlobService2.create_blob_from_bytes('videoblob', imageFileName, imgByteArr)
+            blockBlobService.create_blob_from_bytes('camera-feed', imageFileName, imgByteArr)
+            #blockBlobService2.create_blob_from_bytes('videoblob', imageFileName, imgByteArr)
             #Write to local directory
             pilImage.save(os.path.join(pathOut , "image{:d}".format(x))+now+".jpg")
             #cv2.imwrite(os.path.join(pathOut , "image{:d}.jpeg".format(x)),frame)

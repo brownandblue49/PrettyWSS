@@ -72,7 +72,7 @@ def extractFrames(pathOut,filepath):
             imageFileName= 'image' +  str(int(x)) + "_img_" + now + ".jpg"
             #imageFileName= 'folder' + "/log/image" +  str(int(x)) + "_img.png"
             blockBlobService.create_blob_from_bytes('camera-feed', imageFileName, imgByteArr)
-            print('saved image to blob')
+            print('saved image to blob - ', blockBlobService.uri)
             #blockBlobService2.create_blob_from_bytes('videoblob', imageFileName, imgByteArr)
             #Write to local directory
             pilImage.save(os.path.join(pathOut , "image{:d}".format(x))+now+".jpg")

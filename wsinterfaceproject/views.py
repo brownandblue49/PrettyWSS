@@ -21,6 +21,7 @@ from os import listdir
 import math
 import logging
 from azure.storage.blob import BlockBlobService
+from azure.storage.queue import QueueService, QueueMessageFormat
 from PIL import Image
 from io import BytesIO
 from datetime import datetime
@@ -66,23 +67,29 @@ def extractFrames(pathOut,filepath):
             pilImage.save(imgByteArr, format='jpeg')
             #print(type(pilImage))          
             imgByteArr = imgByteArr.getvalue()
-            
+            imageDecode = cv2.imencode('.jpg',frame)[1].tobytes()
             # write image to blob for logging
             now = datetime.strftime(datetime.now(), "%Y%m%dT%H%M%S%Z")
             imageFileName= 'image' +  str(int(x)) + "_img_" + now + ".jpg"
             #imageFileName= 'folder' + "/log/image" +  str(int(x)) + "_img.png"
-            blockBlobService.create_blob_from_bytes('camera-feed', imageFileName, imgByteArr)
-            print('saved image to blob - ', blockBlobService.uri)
+            queueclient = QueueService(account_name='storageworkersafety', account_key='oLyRX3ZuRBztBddfYyJktlV3AM+InU2VcvuX9poY94dlbZFqBW5gdVDyrWQUorwXhyV2Bi3LbTSps4enm++4KA==',endpoint_suffix='core.windows.net')
+            blockBlobService.create_blob_from_bytes('camera-feed', imageFileName, imageDecode)
+            #blockBlobService.create_blob_from_bytes('videoblob\epm_stage', imageFileName, imageDecode)
+            queueclient.encode_function = QueueMessageFormat.text_base64encode
+            queueclient.decode_function = QueueMessageFormat.text_base64decode
+            #imageFile = unicode(s, "utf-8")
+            queueclient.put_message('camera-feed',imageFileName)
+            print('written to queue' , imageFileName)
             #blockBlobService2.create_blob_from_bytes('videoblob', imageFileName, imgByteArr)
             #Write to local directory
             pilImage.save(os.path.join(pathOut , "image{:d}".format(x))+now+".jpg")
             #cv2.imwrite(os.path.join(pathOut , "image{:d}.jpeg".format(x)),frame)
-         # increment image
+         # increment ima
             x+=1
             
 def uploadtoblob(filepath):
     block_blob_service = BlockBlobService(account_name='storageworkersafety', account_key='oLyRX3ZuRBztBddfYyJktlV3AM+InU2VcvuX9poY94dlbZFqBW5gdVDyrWQUorwXhyV2Bi3LbTSps4enm++4KA==')
-    container_name ='videoblob\\epm_stage'
+    container_name ='camera-feed'
 
     #local_path = "D:\\Test\\test"
 
@@ -161,7 +168,7 @@ def upload_file(request):
         extractFrames(frame_generated_path , latest_file )
         messages.info(request, 'File has been uploaded and is being analyzed.')
         return render(request,'EPMFileUpload.html')
-        #return HttpResponse("File uploaded successfuly")
+        return HttpResponse("File uploaded successfuly")
 
     else:  
     #    profile = ProfileForm()  

@@ -39,7 +39,7 @@ def extractFrames(pathOut,filepath):
     # Used as counter variable 
     x=1
     frameRate = cap.get(5) #frame rate
-    numberOfPicturesPerSecond= 1 #0.2
+    numberOfPicturesPerSecond= 0.1 #0.2
     blockBlobService = BlockBlobService(account_name='storageworkersafety', account_key='oLyRX3ZuRBztBddfYyJktlV3AM+InU2VcvuX9poY94dlbZFqBW5gdVDyrWQUorwXhyV2Bi3LbTSps4enm++4KA==')
     #blockBlobService2 = BlockBlobService(account_name='wssafedistancing', account_key='JMM7MecLzmnnPF+nK/THdfaE69RpvcNGtmQ782vulU9c4945uBX2y5s8QyWptvNv7cjgDTKf61tfvohsHZ7wXA==')
 
